@@ -1,15 +1,15 @@
-%define		kdeappsver	19.04.1
+%define		kdeappsver	20.12.3
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		libksieve
 Summary:	Libksieve
 Name:		ka5-%{kaname}
-Version:	19.04.1
+Version:	20.12.3
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
-Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	5c8867670977781fadd5075d519885a9
+Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
+# Source0-md5:	53fc4165144db8af32d913d505810c12
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel
@@ -81,7 +81,7 @@ cd build
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
 
-rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/sr
+rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/{ko,sr}
 %find_lang %{kaname} --all-name --with-kde
 
 %clean
@@ -92,9 +92,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
-/etc/xdg/ksieve_script.knsrc
-/etc/xdg/libksieve.categories
-/etc/xdg/libksieve.renamecategories
 %attr(755,root,root) %ghost %{_libdir}/libKF5KManageSieve.so.5
 %attr(755,root,root) %{_libdir}/libKF5KManageSieve.so.5.*.*
 %attr(755,root,root) %ghost %{_libdir}/libKF5KSieve.so.5
@@ -104,6 +101,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kio/sieve.so
 %{_datadir}/kservices5/sieve.protocol
 %{_datadir}/sieve
+%{_datadir}/knsrcfiles/ksieve_script.knsrc
+%{_datadir}/qlogging-categories5/libksieve.categories
+%{_datadir}/qlogging-categories5/libksieve.renamecategories
 
 %files devel
 %defattr(644,root,root,755)
