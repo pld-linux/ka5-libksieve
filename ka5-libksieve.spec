@@ -1,15 +1,15 @@
-%define		kdeappsver	21.04.3
+%define		kdeappsver	21.08.0
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		libksieve
 Summary:	Libksieve
 Name:		ka5-%{kaname}
-Version:	21.04.3
+Version:	21.08.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	084697c071d4d5f38999ac02a28d9ba9
+# Source0-md5:	b5c67c6ab2bf91d01bd7439bb60bb157
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel
@@ -102,7 +102,6 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_libdir}/libKF5KSieveUi.so.5
 %attr(755,root,root) %{_libdir}/libKF5KSieveUi.so.5.*.*
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kio/sieve.so
-%{_datadir}/kservices5/sieve.protocol
 %{_datadir}/sieve
 %{_datadir}/knsrcfiles/ksieve_script.knsrc
 %{_datadir}/qlogging-categories5/libksieve.categories
