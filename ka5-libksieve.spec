@@ -1,15 +1,15 @@
-%define		kdeappsver	21.12.0
+%define		kdeappsver	21.12.1
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		libksieve
 Summary:	Libksieve
 Name:		ka5-%{kaname}
-Version:	21.12.0
+Version:	21.12.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	7c24e91a6f1d0e3165838c0ea0570ec8
+# Source0-md5:	cd7a6c92a5cbf78d188c00b50e9d92cb
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel
