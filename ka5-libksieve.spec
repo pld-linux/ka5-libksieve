@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	21.12.3
+%define		kdeappsver	22.04.0
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		libksieve
 Summary:	Libksieve
 Name:		ka5-%{kaname}
-Version:	21.12.3
+Version:	22.04.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	e33e604e7785eedef465a243f6d20b9e
+# Source0-md5:	9388d681bfd532d5d963754a4a27fb12
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel
@@ -120,13 +120,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_includedir}/KF5/KManageSieve
 %{_includedir}/KF5/KSieveUi
-%{_includedir}/KF5/kmanagesieve
-%{_includedir}/KF5/ksieveui
 %{_includedir}/KF5/libksieve_version.h
 %{_libdir}/cmake/KF5LibKSieve
 %{_libdir}/libKF5KManageSieve.so
 %{_libdir}/libKF5KSieve.so
 %{_libdir}/libKF5KSieveUi.so
 %{_libdir}/qt5/mkspecs/modules/qt_KManageSieve.pri
-%{_libdir}/qt5/mkspecs/modules/qt_KSieve.pri
 %{_libdir}/qt5/mkspecs/modules/qt_KSieveUi.pri
