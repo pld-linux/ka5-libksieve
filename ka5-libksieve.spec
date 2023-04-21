@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	22.12.3
+%define		kdeappsver	23.04.0
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		libksieve
 Summary:	Libksieve
 Name:		ka5-%{kaname}
-Version:	22.12.3
-Release:	3
+Version:	23.04.0
+Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	4a3660e1cdda53147933bc103e0f72cd
+# Source0-md5:	cc1bd0003272e5d1c3c477d6006fabe1
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel
@@ -105,25 +105,26 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
-%ghost %{_libdir}/libKF5KManageSieve.so.5
-%attr(755,root,root) %{_libdir}/libKF5KManageSieve.so.5.*.*
-%ghost %{_libdir}/libKF5KSieve.so.5
-%attr(755,root,root) %{_libdir}/libKF5KSieve.so.5.*.*
-%ghost %{_libdir}/libKF5KSieveUi.so.5
-%attr(755,root,root) %{_libdir}/libKF5KSieveUi.so.5.*.*
 %{_datadir}/sieve
 %{_datadir}/knsrcfiles/ksieve_script.knsrc
 %{_datadir}/qlogging-categories5/libksieve.categories
 %{_datadir}/qlogging-categories5/libksieve.renamecategories
+%ghost %{_libdir}/libKPim5KManageSieve.so.5
+%attr(755,root,root) %{_libdir}/libKPim5KManageSieve.so.*.*.*
+%ghost %{_libdir}/libKPim5KSieve.so.5
+%attr(755,root,root) %{_libdir}/libKPim5KSieve.so.*.*.*
+%ghost %{_libdir}/libKPim5KSieveUi.so.5
+%attr(755,root,root) %{_libdir}/libKPim5KSieveUi.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/KF5/KManageSieve
-%{_includedir}/KF5/KSieveUi
-%{_includedir}/KF5/KSieve
-%{_libdir}/cmake/KF5LibKSieve
-%{_libdir}/libKF5KManageSieve.so
-%{_libdir}/libKF5KSieve.so
-%{_libdir}/libKF5KSieveUi.so
 %{_libdir}/qt5/mkspecs/modules/qt_KManageSieve.pri
 %{_libdir}/qt5/mkspecs/modules/qt_KSieveUi.pri
+%{_includedir}/KF5/KSieve
+%{_includedir}/KPim5/KManageSieve
+%{_includedir}/KPim5/KSieveUi
+%{_libdir}/cmake/KF5LibKSieve
+%{_libdir}/cmake/KPim5LibKSieve
+%{_libdir}/libKPim5KManageSieve.so
+%{_libdir}/libKPim5KSieve.so
+%{_libdir}/libKPim5KSieveUi.so
