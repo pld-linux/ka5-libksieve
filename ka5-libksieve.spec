@@ -1,30 +1,30 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	23.08.4
+%define		kdeappsver	24.01.95
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		libksieve
 Summary:	Libksieve
 Name:		ka5-%{kaname}
-Version:	23.08.4
-Release:	1
+Version:	24.01.95
+Release:	0.1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	a3151ad0b35084f4be52337a5453cad2
+Source0:	https://download.kde.org/unstable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
+# Source0-md5:	890160d5cdfd0c41fe76f13672b47336
 URL:		http://www.kde.org/
-BuildRequires:	Qt5Core-devel >= %{qtver}
-BuildRequires:	Qt5Gui-devel
-BuildRequires:	Qt5Network-devel >= 5.11.1
-BuildRequires:	Qt5Positioning-devel >= 5.11.1
-BuildRequires:	Qt5PrintSupport-devel
-BuildRequires:	Qt5Qml-devel >= 5.11.1
-BuildRequires:	Qt5Quick-devel >= 5.11.1
-BuildRequires:	Qt5Test-devel
-BuildRequires:	Qt5WebChannel-devel >= 5.11.1
-BuildRequires:	Qt5WebEngine-devel
-BuildRequires:	Qt5Widgets-devel
+BuildRequires:	Qt6Core-devel >= %{qtver}
+BuildRequires:	Qt6Gui-devel
+BuildRequires:	Qt6Network-devel >= 5.11.1
+BuildRequires:	Qt6Positioning-devel >= 5.11.1
+BuildRequires:	Qt6PrintSupport-devel
+BuildRequires:	Qt6Qml-devel >= 5.11.1
+BuildRequires:	Qt6Quick-devel >= 5.11.1
+BuildRequires:	Qt6Test-devel
+BuildRequires:	Qt6WebChannel-devel >= 5.11.1
+BuildRequires:	Qt6WebEngine-devel
+BuildRequires:	Qt6Widgets-devel
 BuildRequires:	cmake >= 3.20
 BuildRequires:	cyrus-sasl-devel
 BuildRequires:	gettext-devel
@@ -35,17 +35,17 @@ BuildRequires:	ka5-kmime-devel >= %{kdeappsver}
 BuildRequires:	ka5-kpimtextedit-devel >= %{kdeappsver}
 BuildRequires:	ka5-libkdepim-devel >= %{kdeappsver}
 BuildRequires:	ka5-pimcommon-devel >= %{kdeappsver}
-BuildRequires:	kf5-extra-cmake-modules >= %{kframever}
-BuildRequires:	kf5-karchive-devel >= %{kframever}
-BuildRequires:	kf5-kdoctools-devel >= %{kframever}
-BuildRequires:	kf5-ki18n-devel >= %{kframever}
-BuildRequires:	kf5-kiconthemes-devel >= %{kframever}
-BuildRequires:	kf5-kio-devel >= %{kframever}
-BuildRequires:	kf5-knewstuff-devel >= %{kframever}
-BuildRequires:	kf5-kwindowsystem-devel >= %{kframever}
-BuildRequires:	kf5-syntax-highlighting-devel >= %{kframever}
+BuildRequires:	kf6-extra-cmake-modules >= %{kframever}
+BuildRequires:	kf6-karchive-devel >= %{kframever}
+BuildRequires:	kf6-kdoctools-devel >= %{kframever}
+BuildRequires:	kf6-ki18n-devel >= %{kframever}
+BuildRequires:	kf6-kiconthemes-devel >= %{kframever}
+BuildRequires:	kf6-kio-devel >= %{kframever}
+BuildRequires:	kf6-knewstuff-devel >= %{kframever}
+BuildRequires:	kf6-kwindowsystem-devel >= %{kframever}
+BuildRequires:	kf6-syntax-highlighting-devel >= %{kframever}
 BuildRequires:	ninja
-BuildRequires:	qt5-build >= %{qtver}
+BuildRequires:	qt6-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
 BuildRequires:	tar >= 1:1.22
@@ -80,7 +80,8 @@ Pliki nagłówkowe dla programistów używających %{kaname}.
 	-G Ninja \
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
 	-DHTML_INSTALL_DIR=%{_kdedocdir} \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
+	-DQT_MAJOR_VERSION=6
 %ninja_build -C build
 
 %if %{with tests}
@@ -103,25 +104,30 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
-%{_datadir}/sieve
+%attr(755,root,root) %{_libdir}/libKPim6KManageSieve.so.*.*
+%ghost %{_libdir}/libKPim6KManageSieve.so.6
+%attr(755,root,root) %{_libdir}/libKPim6KSieve.so.*.*
+%ghost %{_libdir}/libKPim6KSieve.so.6
+%attr(755,root,root) %{_libdir}/libKPim6KSieveCore.so.*.*
+%ghost %{_libdir}/libKPim6KSieveCore.so.6
+%attr(755,root,root) %{_libdir}/libKPim6KSieveUi.so.*.*
+%ghost %{_libdir}/libKPim6KSieveUi.so.6
 %{_datadir}/knsrcfiles/ksieve_script.knsrc
-%{_datadir}/qlogging-categories5/libksieve.categories
-%{_datadir}/qlogging-categories5/libksieve.renamecategories
-%ghost %{_libdir}/libKPim5KManageSieve.so.5
-%attr(755,root,root) %{_libdir}/libKPim5KManageSieve.so.*.*.*
-%ghost %{_libdir}/libKPim5KSieve.so.5
-%attr(755,root,root) %{_libdir}/libKPim5KSieve.so.*.*.*
-%ghost %{_libdir}/libKPim5KSieveUi.so.5
-%attr(755,root,root) %{_libdir}/libKPim5KSieveUi.so.*.*.*
+%{_datadir}/qlogging-categories6/libksieve.categories
+%{_datadir}/qlogging-categories6/libksieve.renamecategories
+%{_datadir}/sieve
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/qt5/mkspecs/modules/qt_KManageSieve.pri
-%{_libdir}/qt5/mkspecs/modules/qt_KSieveUi.pri
-%{_includedir}/KF5/KSieve
-%{_includedir}/KPim5/KManageSieve
-%{_includedir}/KPim5/KSieveUi
-%{_libdir}/cmake/KPim5LibKSieve
-%{_libdir}/libKPim5KManageSieve.so
-%{_libdir}/libKPim5KSieve.so
-%{_libdir}/libKPim5KSieveUi.so
+%{_includedir}/KPim6/KManageSieve
+%{_includedir}/KPim6/KSieve
+%{_includedir}/KPim6/KSieveCore
+%{_includedir}/KPim6/KSieveUi
+%{_libdir}/cmake/KPim6KManageSieve
+%{_libdir}/cmake/KPim6KSieve
+%{_libdir}/cmake/KPim6KSieveCore
+%{_libdir}/cmake/KPim6KSieveUi
+%{_libdir}/libKPim6KManageSieve.so
+%{_libdir}/libKPim6KSieve.so
+%{_libdir}/libKPim6KSieveCore.so
+%{_libdir}/libKPim6KSieveUi.so
